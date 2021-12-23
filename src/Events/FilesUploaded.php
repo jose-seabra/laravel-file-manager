@@ -35,8 +35,14 @@ class FilesUploaded
     {
         $this->disk = $request->input('disk');
         $this->path = $request->input('path');
-        $this->files = $request->file('files');
         $this->overwrite = $request->input('overwrite');
+
+        foreach ($request->file('files') as $key => $file) {
+            $this->files[$key]['path'] = $this->path.'/'.$file->getClientOriginalName();
+            $this->files[$key]['name'] = $file->getClientOriginalName();
+            $this->files[$key]['mimeType'] = $file->getClientMimeType();
+            $this->files[$key]['error'] = $file->getError();
+        }
     }
 
     /**
