@@ -9,22 +9,22 @@ class FilesUploaded
     /**
      * @var string
      */
-    private $disk;
+    public $disk;
 
     /**
      * @var string
      */
-    private $path;
+    public $path;
 
     /**
      * @var \Illuminate\Http\UploadedFile
      */
-    private $files;
+    public $files;
 
     /**
      * @var string|null
      */
-    private $overwrite;
+    public $overwrite;
 
     /**
      * FilesUploaded constructor.
