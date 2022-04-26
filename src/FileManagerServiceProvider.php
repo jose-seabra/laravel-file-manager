@@ -2,6 +2,7 @@
 
 namespace Alexusmai\LaravelFileManager;
 
+use Alexusmai\LaravelFileManager\Controllers\FileManagerController;
 use Alexusmai\LaravelFileManager\Middleware\FileManagerACL;
 use Alexusmai\LaravelFileManager\Services\ACLService\ACLRepository;
 use Alexusmai\LaravelFileManager\Services\ConfigService\ConfigRepository;
@@ -73,5 +74,11 @@ class FileManagerServiceProvider extends ServiceProvider
 
         // register ACL middleware
         $this->app['router']->aliasMiddleware('fm-acl', FileManagerACL::class);
+
+        // register controller as singleton
+        $this->app->singleton(
+            'FileManagerControllerSingleton',
+            FileManagerController::class
+        );
     }
 }
